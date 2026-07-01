@@ -1,0 +1,16 @@
+{
+  "railway": {
+    "token_env_var": "RAILWAY_TOKEN",
+    "poll_interval_seconds": 5,
+    "auto_copy": true
+  },
+  "formatting": {
+    "include_timestamps": true,
+    "max_lines_per_error": 50,
+    "highlight_keywords": ["error", "failed", "exception", "Error:", "ERR!"]
+  },
+  "notifications": {
+    "enabled": true,
+    "sound": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "service": {
+    "name": "django-app",
+    "language": "python"
+  },
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "python manage.py migrate && python manage.py collectstatic --noinput",
+    "installCommand": "pip install --no-cache-dir -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "gunicorn config.wsgi:application --bind 0.0.0.0:$PORT",
+    "healthcheckPath": "/health",
+    "healthcheckPort": 8000,
+    "restartPolicy": "on-failure",
+    "restartLimitMs": 30000
+  },
+  "environment": {
+    "PYTHONUNBUFFERED": "1",
+    "DJANGO_SETTINGS_MODULE": "config.settings"
+  }
+}

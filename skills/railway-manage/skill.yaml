@@ -1,0 +1,34 @@
+name: railway-manage
+description: Post-deploy management tasks — tail logs, manage env vars, scale services, rollback deployments, run migrations.
+version: 0.1.0
+triggers:
+  - "railway logs"
+  - "railway manage"
+  - "tail railway logs"
+  - "rollback railway"
+  - "railway env"
+  - "railway scale"
+  - "railway migrate"
+requires:
+  railway_cli: true
+  git_repo: true
+steps:
+  - parse_command
+  - execute_management_action
+  - report_result
+commands:
+  logs:
+    description: "Tail deployment logs"
+    args: ["--service", "--build", "--deploy"]
+  env:
+    description: "List/set/delete environment variables"
+    args: ["set", "get", "delete", "list"]
+  rollback:
+    description: "Rollback to previous deployment"
+    args: ["--deployment-id"]
+  scale:
+    description: "Scale service replicas"
+    args: ["--replicas"]
+  migrate:
+    description: "Run database migrations"
+    args: ["--service"]

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "service": {
+    "name": "fastapi-app",
+    "language": "python"
+  },
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "pip install -r requirements.txt",
+    "installCommand": "pip install --no-cache-dir -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "uvicorn main:app --host 0.0.0.0 --port $PORT",
+    "healthcheckPath": "/health",
+    "healthcheckPort": 8000,
+    "restartPolicy": "on-failure",
+    "restartLimitMs": 30000
+  },
+  "environment": {
+    "PYTHONUNBUFFERED": "1"
+  }
+}

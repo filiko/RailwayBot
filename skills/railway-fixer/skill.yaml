@@ -1,0 +1,26 @@
+name: railway-fixer
+description: Autonomous sub-agent that monitors Railway deployments, diagnoses build errors, auto-fixes them, commits, and triggers redeploy until the deployment succeeds or escalates.
+version: 0.1.0
+triggers:
+  - "fix my railway deploy"
+  - "check railway errors"
+  - "railway-fixer"
+autonomous: true
+parent_chain:
+  - railway-deploy
+requires:
+  railway_cli: true
+  git_repo: true
+runs_independently: true
+exit_conditions:
+  success: "2 consecutive successful deploys"
+  failure: "3 failed fix attempts per error type"
+  escalation: "user notified with full diagnostic"
+steps:
+  - poll_status
+  - diagnose_errors
+  - apply_fixes
+  - commit_and_redeploy
+  - verify_deployment
+max_retries: 3
+poll_interval_seconds: 10

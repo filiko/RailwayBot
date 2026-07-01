@@ -1,0 +1,29 @@
+name: railway-deploy
+description: Detect a repository's tech stack and generate Railway deployment configs (PostgreSQL, Redis, backend, frontend). Spawns railway-fixer sub-agent after deploy.
+version: 0.1.0
+triggers:
+  - "deploy my repo to Railway"
+  - "set up railway"
+  - "configure railway deployment"
+  - "railway deploy"
+  - "setup railway for *"
+requires:
+  railway_cli: true
+  git_repo: true
+chains_with:
+  - railway-fixer
+outputs:
+  deployment_url: string
+  services_created: string[]
+  config_files: string[]
+steps:
+  - detect_stack
+  - select_template
+  - generate_configs
+  - create_services
+  - inject_env_vars
+  - commit_and_deploy
+  - chain_fixer
+env:
+  RAILWAY_PROJECT_ID: optional
+  SKIP_PROMPTS: "false"

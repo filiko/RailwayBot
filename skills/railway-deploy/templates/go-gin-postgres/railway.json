@@ -1,0 +1,22 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "service": {
+    "name": "go-app",
+    "language": "go"
+  },
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "go build -o server .",
+    "installCommand": "go mod download"
+  },
+  "deploy": {
+    "startCommand": "./server",
+    "healthcheckPath": "/health",
+    "healthcheckPort": 8080,
+    "restartPolicy": "on-failure",
+    "restartLimitMs": 30000
+  },
+  "environment": {
+    "PORT": "8080"
+  }
+}
