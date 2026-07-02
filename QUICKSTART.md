@@ -12,7 +12,14 @@ pip install -e .
 
 This installs RailwayBot as a package and adds the `railwaybot` command to your PATH.
 
-**Alternative (Manual):**
+**No-install alternative (good for coding agents):**
+```bash
+python /path/to/RailwayBot/railwaybot-check.py --summary
+```
+Works from any directory, no `pip install` needed. If `pip install -e .` fails on your
+Python setup (some 3.10 configs hit setuptools/distutils issues), use this instead.
+
+**Manual dependencies only:**
 ```bash
 pip install -r requirements.txt
 # Note: This doesn't add commands to PATH
@@ -38,7 +45,7 @@ railway login
 Navigate to your Railway project and link it:
 
 ```bash
-cd C:\path\to\your\railway-project
+cd /path/to/your/railway-project
 railway link
 ```
 
@@ -46,7 +53,7 @@ railway link
 
 ```bash
 # From your Railway project directory
-cd C:\path\to\your\railway-project
+cd /path/to/your/railway-project
 
 # Start RailwayBot (after pip install -e .)
 railwaybot watch
@@ -61,7 +68,7 @@ python -m railwaybot.cli watch
 
 **Terminal 1 - RailwayBot:**
 ```bash
-cd C:\path\to\your\railway-project
+cd /path/to/your/railway-project
 railwaybot watch
 ```
 
@@ -153,7 +160,7 @@ railway link
 The deployment failed but RailwayBot couldn't find specific error patterns. The tool will still copy the last portion of logs.
 
 ### Want to customize error patterns?
-Edit `src/log_parser.py` -> `ERROR_PATTERNS` list
+Edit `railwaybot/log_parser.py` -> `ERROR_PATTERNS` list
 
 ## Tips
 
@@ -199,7 +206,7 @@ This format is optimized for coding assistants to understand and provide relevan
 ## Next Steps
 
 - Read the full [README.md](README.md) for detailed documentation
-- Check [AGENTS.md](AGENTS.md) for technical architecture details
+- Check [docs/AGENT_INTEGRATION.md](docs/AGENT_INTEGRATION.md) for architecture and agent integration details
 - Customize `config.json` to your preferences
 - Consider adding RailwayBot to your startup scripts for automatic launching
 

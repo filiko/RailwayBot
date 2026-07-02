@@ -111,7 +111,7 @@ python -m railwaybot.agent_api --summary
 railwaybot-agent --summary
 ```
 
-See [AGENT_INTEGRATION.md](AGENT_INTEGRATION.md) for detailed agent integration examples.
+See [docs/AGENT_INTEGRATION.md](docs/AGENT_INTEGRATION.md) for detailed agent integration examples.
 
 ### Configuration
 
