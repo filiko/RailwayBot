@@ -20,3 +20,7 @@ config.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Local agent config
+opencode.json
+.opencode/
